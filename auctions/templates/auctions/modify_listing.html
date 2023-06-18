@@ -1,0 +1,11 @@
+<!--modify_listing.html-->
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+    {% include 'auctions/listing_display.html' with listing=listing %}  
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Modify listing</button>
+    </form>
+{% endblock%}

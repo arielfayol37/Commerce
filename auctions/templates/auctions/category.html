@@ -1,0 +1,13 @@
+<!--category.html-->
+{% extends "auctions/layout.html" %}
+{% block title %}{{category.name}}{% endblock %}
+{% block body %}
+    <h2>{{category.name}} Listings</h2><hr/>
+
+    {% for listing in clistings %} 
+        <a href="{% url 'listing' listing.id %}" class="custom-link">
+        <div>{% include 'auctions/listing_display.html' with listing=listing %}</div>
+
+        </a>
+    {% endfor %}
+{% endblock %}
