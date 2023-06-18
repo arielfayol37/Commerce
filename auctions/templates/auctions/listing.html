@@ -3,19 +3,46 @@
 
 {% block body %}
 
-{% include 'auctions/listing_display.html' with listing=listing %}
-    {% if user.is_authenticated %}
-        {% if listing in user.watchlist.all %}
-            <a href="{% url 'watchlist' listing.id %}"><button type="button">Remove from Watchlist</button></a>
-        {% else %}
-            <a href="{% url 'watchlist' listing.id %}"><button type="button">Add to Watchlist</button></a>
-        {% endif %} 
+    {% if user_is_winner %}
+        <h3>Congratulations. You won this listing!</h3>
     {% endif %}
-    <hr/>
-    <hr/>
-    <a href = "">Close Listing</a>
-    <a href="{% url 'create_listing' %}">Modify Listing (title, starting bid, image...)</a>
+    {% include 'auctions/listing_display.html' with listing=listing %}
+        
 
-    <a href="">Delete Listing</a>
+        {% if user == listing.user %}
+            <div><a href = "{% url 'close_listing' listing_id=listing.id%}">Close Listing</a></div>
+            <div><a href="{% url 'modify_listing' listing_id=listing.id %}">Modify Listing (title, starting bid, image...)</a></div>
+            <div>
+            <a href="{% url 'delete_listing' listing_id=listing.id %}">Delete Listing</a>
+            </div> 
+        {% else %}
+            <form action = "{% url 'bid' listing_id=listing.id %}" method = "post">
+                {% csrf_token %}
+                <div><b>{{message}}</b></div>
+                
+                {{bidding_form}}
+                <button type="submit" class="w-button">Bid</button>
+            </form>
+        {% endif %}   
+        <hr/>
+        <h3>Comments</h3>
+        <!-- Display existing comments -->
+        {% for comment in listing.comments.all %}
+        <div class="comment">
+            <p>{{ comment.content }}</p>
+            <p><b> Posted by</b>: {{ comment.user.username }}</p>
+            <p><b> Posted on:</b> {{ comment.pub_date }}</p>
+        </div>
+        <hr/>
+        {% endfor %}
 
+        
+
+        
+        <!-- Add a new comment form -->
+        <form method="post" action="{% url 'add_comment' listing_id=listing.id %}">
+            {% csrf_token %}
+            <textarea name="content" placeholder="Enter your comment"></textarea>
+            <button type="submit" class="w-button">Submit Comment</button>
+        </form>
 {% endblock %}

@@ -2,11 +2,11 @@
 {% extends "auctions/layout.html" %}
 
 {% block body %}
-    <h2>Active Listings</h2>
+    <h2>Active Listings</h2><hr/>
 
     {% for listing in listings %} 
         <a href="{% url 'listing' listing.id %}" class="custom-link">
             {% include 'auctions/listing_display.html' with listing=listing %}
-        </a>  
+        </a><br/><br/>  
     {% endfor %}
 {% endblock %}

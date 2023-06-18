@@ -2,15 +2,15 @@ body {
     padding: 10px;
 }
 .image-container {
-    max-width: 40%;
+    max-width: 30%;
     height: auto;
     overflow: hidden;
   }
   
   .img-listing {
     display: block;
-    width: 100%;
-    height: auto;
+    max-width: 100%;
+    height: auto; 
   }
 a.custom-link {
   color: black !important;
@@ -24,4 +24,23 @@ a.custom-link:hover {
 a.custom-link:visited {
     color: black !important;
     text-decoration: none !important;
+}
+.w-button {
+  margin-top: 20px;
+  margin-left: 20px;
+  border: 1px solid #f8f9fa;
+  border-radius: 4px;
+  font-family: Roboto,arial,sans-serif;
+  font-size: 14px;
+  margin: 11px 4px;
+  padding: 0 16px;
+  line-height: 27px;
+  height: 36px;
+  min-width: 54px;
+  text-align: center;
+  cursor: pointer;
+  user-select: none;
+  background-color:#007bff; 
+  color: white;
+  font-weight: bold;
 }
