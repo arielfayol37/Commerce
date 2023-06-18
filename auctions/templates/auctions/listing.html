@@ -1,0 +1,21 @@
+<!--listing.html-->
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+
+{% include 'auctions/listing_display.html' with listing=listing %}
+    {% if user.is_authenticated %}
+        {% if listing in user.watchlist.all %}
+            <a href="{% url 'watchlist' listing.id %}"><button type="button">Remove from Watchlist</button></a>
+        {% else %}
+            <a href="{% url 'watchlist' listing.id %}"><button type="button">Add to Watchlist</button></a>
+        {% endif %} 
+    {% endif %}
+    <hr/>
+    <hr/>
+    <a href = "">Close Listing</a>
+    <a href="{% url 'create_listing' %}">Modify Listing (title, starting bid, image...)</a>
+
+    <a href="">Delete Listing</a>
+
+{% endblock %}

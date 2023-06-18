@@ -1,0 +1,22 @@
+
+<!--listing_display.html-->
+<div>
+    <h2>{{ listing.title }}</h2>
+    <div class="image-container">
+        <a href="{% url 'listing' listing.id %}" class="custom-link">
+            <img class='img-listing' src='{{ listing.image_url }}' alt= '{{ listing.title }} Image'>
+        </a>   
+    </div>
+    <p>Description: {{ listing.description }}</p>
+    <p>Starting Bid: ${{ listing.starting_bid }}</p>
+    <p>Status: {{ listing.get_status_display }}</p> <!-- Display the human-readable label of the status -->
+
+    {% if listing.status == 'Open' %}
+        <p>This listing is currently open for bidding.</p>
+    {% elif listing.status == 'Closed' %}
+        <p>This listing is closed for bidding.</p>
+    {% elif listing.status == 'Pending' %}
+        <p>This listing is pending approval.</p>
+    {% endif %} 
+    
+</div>

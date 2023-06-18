@@ -1,0 +1,14 @@
+<!--watchlist.html-->
+{% extends "auctions/layout.html" %}
+{% block title %}Watchlist{% endblock %}
+{% block body %}
+    <h2>My Watch List</h2>
+
+    {% for listing in wlistings %} 
+        <a href="{% url 'listing' listing.id %}" class="custom-link">
+        <div>{% include 'auctions/listing_display.html' with listing=listing %}</div>
+        </a>
+        <a href="{% url 'watchlist' listing.id %}"><button type="button">Remove from Watchlist</button></a>
+        <br/><br/>
+    {% endfor %}
+{% endblock %}

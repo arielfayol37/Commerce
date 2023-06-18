@@ -1,0 +1,27 @@
+body {
+    padding: 10px;
+}
+.image-container {
+    max-width: 40%;
+    height: auto;
+    overflow: hidden;
+  }
+  
+  .img-listing {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+a.custom-link {
+  color: black !important;
+  text-decoration: none !important;
+}
+
+a.custom-link:hover {
+  color: black !important;
+  text-decoration: none !important;
+}
+a.custom-link:visited {
+    color: black !important;
+    text-decoration: none !important;
+}

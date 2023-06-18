@@ -1,0 +1,45 @@
+<!--create_listing.html-->
+{% extends "auctions/layout.html" %}
+{% block title %}Create Listing{% endblock %}
+{% block body %}
+    {% if user.is_authenticated %}
+    <h3>Creating a new listing</h3>
+   <!-- <form action = "{% url 'create_listing' %}" method="POST">
+        
+        {% csrf_token %}
+
+        <div>
+            <label>Title: </label>
+            <input name = "title" type="text"/>
+        </div>
+        <div>
+            <label>Start Bid: </label>
+            <input name = "starting_bid" type="text"/>
+        </div>
+        <div>
+            <div>
+                <label> Decription: </label>
+            </div>
+            <div><input name="description" type="textarea"/></div>
+        </div>
+        <div>
+            <label>Url to Image (optional): </label>
+            <input name = "image_url" type="text"/>
+        </div>
+        <div>
+            <label>Category(optional): </label>
+            <input name = "category" type="text"/>
+        </div>
+        <div>
+            <input type="submit" value="Create Listing"/>
+        </div>
+    </form>
+-->
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Create listing</button>
+    </form>
+    {% endif %}
+
+{% endblock %}
